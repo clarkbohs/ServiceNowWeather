@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic_language">
+    <sys_cb_topic_language action="DELETE">
+        <cb_topic_id display_value="Weather_Copy_04062021">e0adb0a6db1b2c101d775385ca961903</cb_topic_id>
+        <language_code>en</language_code>
+        <nlu_entities>[{"node_id":"3f8109537ce7492884aa0d611fff927f","variable_name":"autocomplete","nlu_entity":"","nlu_entity_label":""},{"node_id":"ae066848d6e64478b0f732c165a85a09","variable_name":"city4characters","nlu_entity":"","nlu_entity_label":""},{"node_id":"85ebd9cf379d4033af49552fb7dab430","variable_name":"select_city","nlu_entity":"","nlu_entity_label":""},{"node_id":"cbc6d2b97fbc4e32aa54b5609cb33e1c","variable_name":"display_cities","nlu_entity":"","nlu_entity_label":""},{"node_id":"5538fbeb268a4f259a60642d91f98a6e","variable_name":"get_cities","nlu_entity":"","nlu_entity_label":""},{"node_id":"5a0ba20d69924850beede172ea5ddaeb","variable_name":"display_cities_to_select","nlu_entity":"","nlu_entity_label":""},{"node_id":"5a16b13770294fe99c2d23710b496ad1","variable_name":"choice_of_city","nlu_entity":"","nlu_entity_label":""},{"node_id":"8d2ca681c0cb4a95994c1a5b03d73ee1","variable_name":"make_choice","nlu_entity":"","nlu_entity_label":""},{"node_id":"aa0218e4e9ae4f09a289cbdc557bad17","variable_name":"select_it","nlu_entity":"","nlu_entity_label":""},{"node_id":"5250025bbda6432dbb43bbbd3877f99f","variable_name":"city_not_found","nlu_entity":"","nlu_entity_label":""},{"node_id":"0e36a7bf1009411c8901c2066d4e74c0","variable_name":"cityexists","nlu_entity":"","nlu_entity_label":""},{"node_id":"974c9d8f87a046d9ade74fccf5789511","variable_name":"cityexists2","nlu_entity":"","nlu_entity_label":""},{"node_id":"45de367fe18e4733b90cee4d3a22bb3f","variable_name":"continue_","nlu_entity":"","nlu_entity_label":""},{"node_id":"08174a4d9d1b4efdbec264d9cd8fc191","variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""},{"node_id":"29c5e97122b94de8a23cdf36c01f092b","variable_name":"choose_from_history","nlu_entity":"","nlu_entity_label":""},{"node_id":"54c6e02075e540fe8f2cb0305544fd33","variable_name":"rerunweather","nlu_entity":"","nlu_entity_label":""},{"node_id":"c3ea2f14ceb74341b4918ae08661027f","variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""}]</nlu_entities>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model>Setup_Topics_Model</nlu_model>
+        <nlu_model_label>[Read Only] Setup Topics Model</nlu_model_label>
+        <nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider>
+        <sys_class_name>sys_cb_topic_language</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-06 15:38:55</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>74adb4a6db1b2c101d775385ca96192c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_update_name>sys_cb_topic_language_74adb4a6db1b2c101d775385ca96192c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-06 15:38:55</sys_updated_on>
+    </sys_cb_topic_language>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Weather">541541c2db13e8101d775385ca961921</application>
+        <file_path/>
+        <instance_id>d10e0751dbe99bc04c1ff70fbf961974</instance_id>
+        <instance_name>dev56465</instance_name>
+        <name>sys_cb_topic_language_74adb4a6db1b2c101d775385ca96192c</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic_language"><sys_cb_topic_language action="INSERT_OR_UPDATE"><cb_topic_id display_value="Weather_Copy_04062021">e0adb0a6db1b2c101d775385ca961903</cb_topic_id><language_code>en</language_code><nlu_entities>[{"node_id":"3f8109537ce7492884aa0d611fff927f","variable_name":"autocomplete","nlu_entity":"","nlu_entity_label":""},{"node_id":"ae066848d6e64478b0f732c165a85a09","variable_name":"city4characters","nlu_entity":"","nlu_entity_label":""},{"node_id":"85ebd9cf379d4033af49552fb7dab430","variable_name":"select_city","nlu_entity":"","nlu_entity_label":""},{"node_id":"cbc6d2b97fbc4e32aa54b5609cb33e1c","variable_name":"display_cities","nlu_entity":"","nlu_entity_label":""},{"node_id":"5538fbeb268a4f259a60642d91f98a6e","variable_name":"get_cities","nlu_entity":"","nlu_entity_label":""},{"node_id":"5a0ba20d69924850beede172ea5ddaeb","variable_name":"display_cities_to_select","nlu_entity":"","nlu_entity_label":""},{"node_id":"5a16b13770294fe99c2d23710b496ad1","variable_name":"choice_of_city","nlu_entity":"","nlu_entity_label":""},{"node_id":"8d2ca681c0cb4a95994c1a5b03d73ee1","variable_name":"make_choice","nlu_entity":"","nlu_entity_label":""},{"node_id":"aa0218e4e9ae4f09a289cbdc557bad17","variable_name":"select_it","nlu_entity":"","nlu_entity_label":""},{"node_id":"5250025bbda6432dbb43bbbd3877f99f","variable_name":"city_not_found","nlu_entity":"","nlu_entity_label":""},{"node_id":"0e36a7bf1009411c8901c2066d4e74c0","variable_name":"cityexists","nlu_entity":"","nlu_entity_label":""},{"node_id":"974c9d8f87a046d9ade74fccf5789511","variable_name":"cityexists2","nlu_entity":"","nlu_entity_label":""},{"node_id":"45de367fe18e4733b90cee4d3a22bb3f","variable_name":"continue_","nlu_entity":"","nlu_entity_label":""},{"node_id":"08174a4d9d1b4efdbec264d9cd8fc191","variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""},{"node_id":"29c5e97122b94de8a23cdf36c01f092b","variable_name":"choose_from_history","nlu_entity":"","nlu_entity_label":""},{"node_id":"54c6e02075e540fe8f2cb0305544fd33","variable_name":"rerunweather","nlu_entity":"","nlu_entity_label":""},{"node_id":"c3ea2f14ceb74341b4918ae08661027f","variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""}]</nlu_entities><nlu_intent/><nlu_intent_label/><nlu_model>Setup_Topics_Model</nlu_model><nlu_model_label>[Read Only] Setup Topics Model</nlu_model_label><nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider><sys_class_name>sys_cb_topic_language</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-04-06 15:38:55</sys_created_on><sys_domain>global</sys_domain><sys_id>74adb4a6db1b2c101d775385ca96192c</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package><sys_policy/><sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope><sys_update_name>sys_cb_topic_language_74adb4a6db1b2c101d775385ca96192c</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-04-06 15:38:55</sys_updated_on></sys_cb_topic_language></record_update>]]></payload>
+        <payload_hash>-690382627</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>d81541c2db13e8101d775385ca961923</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-06 15:38:55</sys_created_on>
+        <sys_id>74adb4a6db1b2c101d775385ca96192e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>178a7d632180000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-06 15:38:55</sys_updated_on>
+        <type>CB Topic Language</type>
+        <update_guid>7cadb4a64d1b2c1024f77ffaef5c512d</update_guid>
+        <update_guid_history>7cadb4a64d1b2c1024f77ffaef5c512d:-690382627</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-07 15:37:55</sys_created_on>
+        <sys_db_object display_value="" name="sys_cb_topic_language">sys_cb_topic_language</sys_db_object>
+        <sys_id>0031a542f4ad4642848a1a69897b0699</sys_id>
+        <sys_metadata>74adb4a6db1b2c101d775385ca96192c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_scope_delete display_value="">29ad0ae5084c44ef93fa1b9454296b51</sys_scope_delete>
+        <sys_update_name>sys_cb_topic_language_74adb4a6db1b2c101d775385ca96192c</sys_update_name>
+        <sys_update_version display_value="sys_cb_topic_language_74adb4a6db1b2c101d775385ca96192c">74adb4a6db1b2c101d775385ca96192e</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-07 15:37:55</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

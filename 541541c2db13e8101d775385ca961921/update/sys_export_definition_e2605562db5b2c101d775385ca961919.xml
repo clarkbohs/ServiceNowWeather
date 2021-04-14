@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_export_definition">
+    <sys_export_definition action="INSERT_OR_UPDATE">
+        <field_list>name,image,size_bytes,height,width,sys_updated_on</field_list>
+        <filter table="db_image">active=true<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+        </filter>
+        <name>ed_t_db_image</name>
+        <sys_class_name>sys_export_definition</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-06 17:00:58</sys_created_on>
+        <sys_id>e2605562db5b2c101d775385ca961919</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>ed_t_db_image</sys_name>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_update_name>sys_export_definition_e2605562db5b2c101d775385ca961919</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-06 17:00:58</sys_updated_on>
+        <table_name>db_image</table_name>
+        <view display_value="Exp_de2605562db5b2c101d775385ca961919" name="exp_de2605562db5b2c101d775385ca961919">a6605562db5b2c101d775385ca96191a</view>
+    </sys_export_definition>
+</record_update>

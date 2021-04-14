@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic_language">
+    <sys_cb_topic_language action="INSERT_OR_UPDATE">
+        <cb_topic_id display_value="Weather">ddd30cdedbd7e8101d775385ca9619a7</cb_topic_id>
+        <language_code>en</language_code>
+        <nlu_entities>[{"node_id":"f783e8c282944644b230c887a9114104","variable_name":"city4characters","nlu_entity":"searchquery","nlu_entity_label":"searchquery"},{"node_id":"13794769cb9a425cba5b8345abefd431","variable_name":"choice_of_city","nlu_entity":"searchquery","nlu_entity_label":"searchquery"},{"node_id":"5de49af003a54009b7c074ab7cf2ae16","variable_name":"choose_loc_from_history","nlu_entity":"searchquery","nlu_entity_label":"searchquery"}]</nlu_entities>
+        <nlu_intent>AddOwnerToGroupDistributionList</nlu_intent>
+        <nlu_intent_label>AddOwnerToGroupDistributionList</nlu_intent_label>
+        <nlu_model>sn_itsm_nlu_ITSM_NLU_for_VA</nlu_model>
+        <nlu_model_label>[Read Only] ITSM NLU for Virtual Agent</nlu_model_label>
+        <nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider>
+        <sys_class_name>sys_cb_topic_language</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-05 16:47:54</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>61d34816db5be8101d775385ca961915</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_update_name>sys_cb_topic_language_61d34816db5be8101d775385ca961915</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-07 04:49:49</sys_updated_on>
+    </sys_cb_topic_language>
+</record_update>

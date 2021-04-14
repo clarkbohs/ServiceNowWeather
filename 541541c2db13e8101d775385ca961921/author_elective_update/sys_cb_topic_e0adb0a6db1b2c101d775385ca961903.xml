@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="DELETE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <auto_resolution_enabled>false</auto_resolution_enabled>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description>Get weather info for any US city</description>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{
+  "graph_api_version": "1.0.31",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "06597eb58e82447b9fccc42ebfc7ad63": {
+          "id": "06597eb58e82447b9fccc42ebfc7ad63",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "68f27e4ca4144c6fb089fcc01e32163e": {
+          "id": "68f27e4ca4144c6fb089fcc01e32163e",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "80d9d74353644131a14b704cf6de52a6": {
+          "id": "80d9d74353644131a14b704cf6de52a6",
+          "name": "Get Weather info by City",
+          "script": "(function execute() {\n   \n    try { \n          var r = new sn_ws.RESTMessageV2('x_544290_weather.OpenWeather', 'Default GET');\n          r.setStringParameterNoEscape('city', vaVars.cityName);\n          \n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\n var Weather = JSON.parse(responseBody); \n\nvaVars.icon = \"IconMissing\";\n\n//Clear\nvar IconCheck = Weather.weather[0].icon.includes(\"01d\");\n if(IconCheck)\n {\n  vaVars.icon = \"https://dev56465.service-now.com/Weather_Clear_Day.png\";\n }\n\n var IconCheck = Weather.weather[0].icon.includes(\"01n\");\n if(IconCheck)\n {\n  vaVars.icon = \"https://dev56465.service-now.com/Weather_Clear_Night.png\";\n }\n  \n//Scattered clouds\nvar IconCheck = Weather.weather[0].icon.includes(\"03d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"03n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Night.png\";\n }\n\n//Few clouds\nvar IconCheck = Weather.weather[0].icon.includes(\"02d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Day.png\";\n }\n \n var IconCheck = Weather.weather[0].icon.includes(\"02n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Few_Clouds_Night.png\";\n }\n\n//Rain\nvar IconCheck = Weather.weather[0].icon.includes(\"10d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"10n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Night.png\";\n }\n\n//Shower rain\nvar IconCheck = Weather.weather[0].icon.includes(\"09d\");\nif(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"09n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Night.png\";\n }\n\n\n //Broken clouds\n var IconCheck = Weather.weather[0].icon.includes(\"04d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Day.png\";\n }\n\n var IconCheck = Weather.weather[0].icon.includes(\"04n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Few_Clouds_Night.png\";\n }\n\n //Thunderstorm\n var IconCheck = Weather.weather[0].icon.includes(\"11d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Thunderstorm_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"11n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Thunderstorm_Night.png\";\n }\n\n //Snow\n var IconCheck = Weather.weather[0].icon.includes(\"13d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Snow_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"13n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Snow_Night.png\";\n }\n\n//Mist\nvar IconCheck = Weather.weather[0].icon.includes(\"50d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Mist_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"50n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Mist_Night.png\";\n }\n\n if(vaVars.icon == \"IconMissing\")\n {\n  vaVars.icon = \"https://dev56465.service-now.com/Weather_weather.png\";\n }\n\n\n\n\n//vaVars.icon = \"https://dev56465.service-now.com/Weather_Clear_Day.png\";\n\n//this is for the built-in images that are unacceptable\n//vaVars.icon = \"https://openweathermap.org/img/wn/\" + Weather.weather[0].icon + \"@2x.png\";\n\n \n vaVars.description = Weather.weather[0].main;\n vaVars.currentTemp = Math.round(Weather.main.temp);\n vaVars.cityNameHeading = Weather.name;\n\n\n}\n\n\ncatch(ex) {\n var message = ex.message;\n}\n\n\n})()\n\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "42206dd1035b434182cda1f8958e2b34": {
+          "id": "42206dd1035b434182cda1f8958e2b34",
+          "stepType": "HtmlOutput",
+          "name": "Display Weather Info in HTML",
+          "value": "&lt;html&gt;\n&lt;head&gt;\n\n&lt;!--&lt;style&gt;\nimg {\n  border: 5px solid #555;\n}--&gt;\n&lt;/style&gt;\n&lt;/head&gt;\n    &lt;body&gt;   \n  &lt;b&gt;&lt;p style=\"font-size:30px;\"&gt; {{vaVars.City_State}}&lt;/p&gt;&lt;/b&gt;\n &lt;b&gt;&lt;p style=\"color:DodgerBlue;font-size:30px;\"&gt;{{vaVars.currentTemp}}° {{vaVars.description}} &lt;/p&gt;&lt;/b&gt;\n\n &lt;img src={{vaVars.icon}}&gt;\n   \n    &lt;/body&gt;\n&lt;/html&gt;\n",
+          "height": "0",
+          "width": "0",
+          "applicability": {
+            "mode": "query",
+            "value": ""
+          }
+        },
+        "b8fe4c0a6a74493c945d01b268f76f30": {
+          "id": "b8fe4c0a6a74493c945d01b268f76f30",
+          "stepType": "TextOutput",
+          "name": "Hello User",
+          "secure": false,
+          "value": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Hello "
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.user.first_name}}",
+                      "displayValue": "Input Variables➛User➛First name"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Here is your local weather!"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "4a3d8cc538c6447ab9f68c78a9124402": {
+          "id": "4a3d8cc538c6447ab9f68c78a9124402",
+          "name": "Get Profile City",
+          "script": "(function execute() {\n   \n    try { \n\n \n var UserName = gs.getUserName();\n\n var now_GR = new GlideRecord('sys_user');\n\n var ReturnValue = now_GR.get('user_name', UserName);\n\n vaVars.cityName = now_GR.getDisplayValue('location');\n\n vaVars.City_State = now_GR.getDisplayValue('location');\n\n\n \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n\n})()\n\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "ae066848d6e64478b0f732c165a85a09": {
+          "id": "ae066848d6e64478b0f732c165a85a09",
+          "stepType": "Prompt",
+          "name": "city4characters",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Enter at least first 3 characters of city:"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "2c7d71e0a4f1460d82db1f28974ae41b",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          }
+        },
+        "79ccea210b324da583f1bc496ec3d837": {
+          "id": "79ccea210b324da583f1bc496ec3d837",
+          "name": "Get City List",
+          "script": "(function execute() {\n   try { \n  var r = new sn_ws.RESTMessageV2('x_544290_weather.GeoBytesCity', 'Default GET');\n  r.setStringParameterNoEscape('city',vaInputs.city4characters);\n\n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\nvaVars.EmptyString = responseBody;\n\nvaVars.DoesCityExist = \"Yes\"; \n\nif(responseBody == '[\\\"\\\"]')\n  {      \nvaVars.DoesCityExist = \"No\"; \nvaVars.error = \"\\\"\" + vaInputs.city4characters + \"\\\" not found\";\n  }\n\n  if(responseBody == '[\\\"%s\\\"]')\n  {\n    vaVars.DoesCityExist = \"No\"; \n\n    vaVars.error = \"\\\"\" + vaInputs.city4characters + \"\\\" less than 3 characters\";\n  }\n\n   \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n  \n}\n\n)()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "5a16b13770294fe99c2d23710b496ad1": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "choice of city",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Select City"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "mode": "query",
+            "value": ""
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "7680910628b3470895c7d0701dc864a8",
+          "id": "5a16b13770294fe99c2d23710b496ad1",
+          "mode": "external",
+          "script": "(function execute() {\n   try { \n  var r = new sn_ws.RESTMessageV2('x_544290_weather.GeoBytesCity', 'Default GET');\n r.setStringParameterNoEscape('city',vaInputs.city4characters);\n\n\n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\n var str = responseBody;\nvar res = str.replace(\"[\\\"\", \"\");\n\nvar res2 = res.replace(\"\\\"]\", \"\");\n\nvar nameArr = res2.split('\",\"');\n\n\n\nvar options = []; // add options here...\n\n\nfor (i = 0; i &lt; nameArr.length; ++i) {\n\n //var CityItem = nameArr[i].replace(\"\\\"\",\"\");\n\n  var CityItem = nameArr[i];\n\n//var CityItem2 = CityItem.replace(\", United States\",\"\");\n\nvar CityItem3 = CityItem.replace(\"\\, \",\"\\,\");\n\nvaVars.CityLIstResults = CityItem3;\n\noptions.push({ 'value': CityItem3, 'label': gs.getMessage(CityItem3), 'render_style': 'data' });\n \n}\n \n options.push({ 'value': \"exit\", 'label': \"Exit\", 'render_style': 'data' });\n   \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n   return options;\n\n}\n\n)()\n",
+          "metadataScript": "",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Cities not found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "condition": {
+            "value": "(function execute() {\n   try { \n  var r = new sn_ws.RESTMessageV2('x_544290_weather.GeoBytesCity', 'Default GET');\n r.setStringParameterNoEscape('city',vaInputs.city4characters);\n\n\n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\n var str = responseBody;\nvar res = str.replace(\"[\\\"\", \"\");\n\nvar res2 = res.replace(\"\\\"]\", \"\");\n\nvar nameArr = res2.split('\",\"');\n\n\n\nvar options = []; // add options here...\n\n\nfor (i = 0; i &lt; nameArr.length; ++i) {\n\n //var CityItem = nameArr[i].replace(\"\\\"\",\"\");\n\n  var CityItem = nameArr[i];\n\n//var CityItem2 = CityItem.replace(\", United States\",\"\");\n\nvar CityItem3 = CityItem.replace(\"\\, \",\"\\,\");\n\nvaVars.CityLIstResults = CityItem3;\n\noptions.push({ 'value': CityItem3, 'label': gs.getMessage(CityItem3), 'render_style': 'data' });\n \n}\n \n options.push({ 'value': \"exit\", 'label': \"Exit\", 'render_style': 'data' });\n   \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n   return options;\n\n}\n\n)()\n",
+            "mode": "external_script"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "df4e71395d9b45bfaa6df9c2def77cc4": {
+          "id": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "93f54a6613f04e35a2b552c0c7a03f3b": {
+          "id": "93f54a6613f04e35a2b552c0c7a03f3b",
+          "stepType": "TextOutput",
+          "name": "Not found",
+          "secure": false,
+          "value": {
+            "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n\n    \n\n    return gs.getMessage('Error: {0}', [vaVars.error]);\n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "9ae895938d664ce6ba3064303d3f2f69": {
+          "id": "9ae895938d664ce6ba3064303d3f2f69",
+          "stepType": "TextOutput",
+          "name": "Goodbye Text",
+          "secure": false,
+          "value": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please return soon ",
+                    "bold": true,
+                    "italic": true
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.user.first_name}}",
+                      "displayValue": "Input Variables➛User➛First name"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ],
+                    "bold": true,
+                    "italic": true
+                  },
+                  {
+                    "text": "",
+                    "bold": true,
+                    "italic": true
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "67869c0771cd49ddacb84bed5297d3b2": {
+          "id": "67869c0771cd49ddacb84bed5297d3b2",
+          "name": "Add to CityName variable",
+          "script": "(function execute() {\n\n    var Result = vaInputs.choose_loc_from_history;\n\n    var Result = Result.toString();\n\n    vaVars.City_State = Result.replace(',US',\"\");\n\n    vaVars.cityName = vaInputs.choose_loc_from_history;\n\n    var tableRec = new GlideRecord('x_544290_weather_weather_virtualagent');\n\n        var userName = gs.getUserName()  \n        \n        tableRec.addQuery('location_choice',vaVars.cityName);\n        tableRec.addQuery('sys_updated_by',userName);\n        tableRec.query();\n\n        if(tableRec.next()) \n        {          \n            tableRec.deleteRecord();     \n        }\n          \n            tableRec.initialize();\n\n            tableRec.location_choice = vaVars.cityName;\n\n            tableRec.insert();     \n            \n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "cbf9d29780814bd5941a3d19adc5fe2d": {
+          "id": "cbf9d29780814bd5941a3d19adc5fe2d",
+          "name": "Add Loc to Table if Unique",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic: */\n\n        var tableRec = new GlideRecord('x_544290_weather_weather_virtualagent');\n\n        var userName = gs.getUserName()  \n        \n        tableRec.addQuery('location_choice',vaVars.cityName);\n        tableRec.addQuery('sys_updated_by',userName);\n        tableRec.query();\n\n         \n        if(tableRec.next()) \n        {          \n            tableRec.deleteRecord();          \n\n           //  tableRec.update();\n        }\n\n          tableRec.initialize();\n\n            tableRec.location_choice = vaVars.cityName;\n\n            tableRec.insert();           \n   \n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "0cda745cde9b4dc89d94f53c8e8bac48": {
+          "id": "0cda745cde9b4dc89d94f53c8e8bac48",
+          "name": "Add to City Variable",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n\n    vaVars.City_State = vaInputs.choice_of_city;\n\nvaVars.cityName = vaInputs.choice_of_city + \",US\";\n\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "15daee4cf7b040ae9920c72ff841f447": {
+          "id": "15daee4cf7b040ae9920c72ff841f447",
+          "stepType": "Decision",
+          "name": "Was Exit Selected?"
+        },
+        "c3ea2f14ceb74341b4918ae08661027f": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "Choose Loc from History",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Select One:"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "d2ee96c3bc2344ff89351585cccf97ac",
+          "id": "c3ea2f14ceb74341b4918ae08661027f",
+          "mode": "glide_record",
+          "script": "",
+          "metadataScript": "",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Location History Not Found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "condition": {
+            "mode": "glide_scripted_query",
+            "value": "(function execute(table) {\n    /* Code your glide record query logic here. For example: */\n\n      var options = [];\n      var gr = new GlideRecordSecure('x_544290_weather_weather_virtualagent');        \n\n      var userName = gs.getUserName() \n\n      vaVars.error = userName;\n\n       // gr.addEncodedQuery('All');\n       gr.addQuery('sys_updated_by',userName);\n       gr.orderByDesc('sys_updated_on');\n       gr.setLimit(4);\n       gr.query();\n        while(gr.next()) {\n            options.push({ 'value': gr.getValue('location_choice'), 'label': gr.getValue('location_choice') });\n       \n      // options.push({ 'value': ProjectKey, 'label': gs.getMessage(ProjectName), 'render_style': 'data' });\n        \n       \n        }\n        options.push({ 'value': \"chooseAnotherCity\", 'label': \"Choose Another City\" });\n         options.push({ 'value': \"exit\", 'label': \"Exit\" });\n         \n       \n        return options; \n\n   \n})(table)\n"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "6449d3019a5945ada70992b4f552ff09": {
+          "id": "6449d3019a5945ada70992b4f552ff09",
+          "stepType": "Decision",
+          "name": "Decision"
+        }
+      },
+      "edges": [
+        {
+          "id": "805dbea3c52147ab94f9c864f394d7f3",
+          "edgeType": "Edge",
+          "source": "93f54a6613f04e35a2b552c0c7a03f3b",
+          "target": "c3ea2f14ceb74341b4918ae08661027f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "57adaaac4bd849208bdec7afe1478e9c",
+          "edgeType": "Edge",
+          "source": "ae066848d6e64478b0f732c165a85a09",
+          "target": "79ccea210b324da583f1bc496ec3d837",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "8ed07f3c522644379747b7abed44c6d5",
+          "edgeType": "Edge",
+          "source": "06597eb58e82447b9fccc42ebfc7ad63",
+          "target": "b8fe4c0a6a74493c945d01b268f76f30",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "2ce60ed8c4aa466da5cd738dce1616e4",
+          "edgeType": "Edge",
+          "source": "cbf9d29780814bd5941a3d19adc5fe2d",
+          "target": "80d9d74353644131a14b704cf6de52a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e431576df1724e2bbeb65d77e1969d4f",
+          "edgeType": "Edge",
+          "source": "67869c0771cd49ddacb84bed5297d3b2",
+          "target": "80d9d74353644131a14b704cf6de52a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e0ef452cb91e41eba3dd2d6d7eca0a35",
+          "edgeType": "Edge",
+          "source": "9ae895938d664ce6ba3064303d3f2f69",
+          "target": "68f27e4ca4144c6fb089fcc01e32163e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "10a2614a84374241acb06b1284155bc3",
+          "edgeType": "Edge",
+          "source": "b8fe4c0a6a74493c945d01b268f76f30",
+          "target": "4a3d8cc538c6447ab9f68c78a9124402",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "37403ad36830470d8064cef6e751c176",
+          "edgeType": "Edge",
+          "source": "80d9d74353644131a14b704cf6de52a6",
+          "target": "42206dd1035b434182cda1f8958e2b34",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ea25527d49bb4a61baaaa0351844fa96",
+          "edgeType": "Edge",
+          "source": "4a3d8cc538c6447ab9f68c78a9124402",
+          "target": "80d9d74353644131a14b704cf6de52a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "6ac16bb52b44487c9c12f83df5d4dd10",
+          "edgeType": "Edge",
+          "source": "79ccea210b324da583f1bc496ec3d837",
+          "target": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f4f0f4fe1373405b9b532cb3311ce056",
+          "edgeType": "Branch",
+          "source": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "target": "5a16b13770294fe99c2d23710b496ad1",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n \n    if(vaVars.DoesCityExist == \"Yes\")\n    {return true;}\n   \n})()\n"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "8bf0d0e3c9eb4b408b55566f97fbe9e3",
+          "edgeType": "Branch",
+          "source": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "target": "93f54a6613f04e35a2b552c0c7a03f3b",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n    if(vaVars.DoesCityExist == \"No\")\n    {return true;}\n   \n})()\n"
+          },
+          "label": "No"
+        },
+        {
+          "id": "89695c96fdb14a0eb73b408a0d68dca4",
+          "edgeType": "Edge",
+          "source": "0cda745cde9b4dc89d94f53c8e8bac48",
+          "target": "cbf9d29780814bd5941a3d19adc5fe2d",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c5ba80b146c54f47b5ac0b15c628771d",
+          "edgeType": "Edge",
+          "source": "5a16b13770294fe99c2d23710b496ad1",
+          "target": "15daee4cf7b040ae9920c72ff841f447",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e2bafdcc9cbd4642bee61da8695ede9d",
+          "edgeType": "Branch",
+          "source": "15daee4cf7b040ae9920c72ff841f447",
+          "target": "0cda745cde9b4dc89d94f53c8e8bac48",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choice_of_city != \"exit\")\n    {\n    return true;\n    }\n})()\n"
+          },
+          "label": "No"
+        },
+        {
+          "id": "3cc81a2546154eada462e20c2b712feb",
+          "edgeType": "Branch",
+          "source": "15daee4cf7b040ae9920c72ff841f447",
+          "target": "9ae895938d664ce6ba3064303d3f2f69",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choice_of_city == \"exit\")\n    {\n    return true;\n    }\n})()\n"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "1f80b998da80487a8486922d954c04e0",
+          "edgeType": "Edge",
+          "source": "42206dd1035b434182cda1f8958e2b34",
+          "target": "c3ea2f14ceb74341b4918ae08661027f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "0ca0f57a18854909beec5758c04878de",
+          "edgeType": "Edge",
+          "source": "c3ea2f14ceb74341b4918ae08661027f",
+          "target": "6449d3019a5945ada70992b4f552ff09",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "5d7a8e91719a4beaba4898e1e3bf8cec",
+          "edgeType": "Branch",
+          "source": "6449d3019a5945ada70992b4f552ff09",
+          "target": "ae066848d6e64478b0f732c165a85a09",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choose_loc_from_history == 'chooseAnotherCity')\n    {return true;}\n    \n})()\n"
+          },
+          "label": "chooseAnotherCity"
+        },
+        {
+          "id": "ae895f566dc94585aa4ee6c7f2a2309d",
+          "edgeType": "Branch",
+          "source": "6449d3019a5945ada70992b4f552ff09",
+          "target": "9ae895938d664ce6ba3064303d3f2f69",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choose_loc_from_history == 'exit')\n    {return true;}\n    \n})()\n"
+          },
+          "label": "Exit"
+        },
+        {
+          "id": "4979c284de9542b7bed44ac42cbfd7b1",
+          "edgeType": "Branch",
+          "source": "6449d3019a5945ada70992b4f552ff09",
+          "target": "67869c0771cd49ddacb84bed5297d3b2",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "query",
+            "value": ""
+          },
+          "label": "Always"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "86c7da29593f42f1b2fba25b5bb37cc5": {
+      "category": "vaInputs",
+      "id": "86c7da29593f42f1b2fba25b5bb37cc5",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "f22e0502d01848608372abaf8d92dade": {
+      "id": "f22e0502d01848608372abaf8d92dade",
+      "value": {
+        "mode": "simple",
+        "value": "icon not found"
+      },
+      "name": "icon",
+      "label": "icon",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "889c4cdf64ad484db54a8446e4603460": {
+      "id": "889c4cdf64ad484db54a8446e4603460",
+      "value": {
+        "mode": "simple",
+        "value": "description not found"
+      },
+      "name": "description",
+      "label": "description",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "8a78039e0eae4d08b18357fa81ef0c08": {
+      "id": "8a78039e0eae4d08b18357fa81ef0c08",
+      "value": {
+        "mode": "simple",
+        "value": "Current temp not found"
+      },
+      "name": "currentTemp",
+      "label": "currentTemp",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "d571f48253474051bfb436fbfd179487": {
+      "id": "d571f48253474051bfb436fbfd179487",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "cityName",
+      "label": "cityName",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "1964ddd3c0bd4b8b80d33f35e2695a19": {
+      "id": "1964ddd3c0bd4b8b80d33f35e2695a19",
+      "value": {
+        "mode": "simple",
+        "value": "sys_id not found"
+      },
+      "name": "sys_id",
+      "label": "sys_id",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "ff419cd58aef48a4a6505757020ad40d": {
+      "id": "ff419cd58aef48a4a6505757020ad40d",
+      "value": {
+        "mode": "simple",
+        "value": "error"
+      },
+      "name": "error",
+      "label": "error",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "233b99e980184780bfea16aa19d474f0": {
+      "id": "233b99e980184780bfea16aa19d474f0",
+      "value": {
+        "mode": "simple",
+        "value": "cityNameHeading not found"
+      },
+      "name": "cityNameHeading",
+      "label": "cityNameHeading",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "2c7d71e0a4f1460d82db1f28974ae41b": {
+      "id": "2c7d71e0a4f1460d82db1f28974ae41b",
+      "name": "city4characters",
+      "label": "City4characters",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTYxNTE1OTk4MTU5OSBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      }
+    },
+    "d09cb6802c93429bac1a98a3ef4f4892": {
+      "id": "d09cb6802c93429bac1a98a3ef4f4892",
+      "value": {
+        "mode": "simple",
+        "value": "City_State not found"
+      },
+      "name": "City_State",
+      "label": "City_State",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "98dda8a35c0145ad81412de67b401959": {
+      "id": "98dda8a35c0145ad81412de67b401959",
+      "value": {
+        "mode": "simple",
+        "value": "CityLIstResults not found"
+      },
+      "name": "CityLIstResults",
+      "label": "CityLIstResults",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "f38992877ea542e082a7e9148f89428d": {
+      "id": "f38992877ea542e082a7e9148f89428d",
+      "value": {
+        "mode": "simple",
+        "value": "ListofCities not found"
+      },
+      "name": "ListofCities",
+      "label": "ListofCities",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "7680910628b3470895c7d0701dc864a8": {
+      "id": "7680910628b3470895c7d0701dc864a8",
+      "name": "choice_of_city",
+      "label": "Choice Of City",
+      "varType": "reference",
+      "table": "",
+      "category": "vaInputs"
+    },
+    "76d5f4bea4ff47df9144d1d3476bd012": {
+      "id": "76d5f4bea4ff47df9144d1d3476bd012",
+      "value": {
+        "mode": "simple",
+        "value": "DoesCityExist not found"
+      },
+      "name": "DoesCityExist",
+      "label": "DoesCityExist",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "d2ee96c3bc2344ff89351585cccf97ac": {
+      "id": "d2ee96c3bc2344ff89351585cccf97ac",
+      "name": "choose_loc_from_history",
+      "label": "Choose Loc From History",
+      "varType": "reference",
+      "table": "x_544290_weather_weather_virtualagent",
+      "category": "vaInputs"
+    },
+    "a423d1a38d6c41d8a5efafb7372c01ab": {
+      "id": "a423d1a38d6c41d8a5efafb7372c01ab",
+      "value": {
+        "mode": "simple",
+        "value": "EmptyString not found"
+      },
+      "name": "EmptyString",
+      "label": "EmptyString",
+      "varType": "script",
+      "category": "vaVars"
+    }
+  }
+}</graph>
+        <key_phrases>Weather_Copy_04062021</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>Weather_Copy_04062021</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <roles/>
+        <source_topic_id>ddd30cdedbd7e8101d775385ca9619a7</source_topic_id>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-06 15:38:54</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>e0adb0a6db1b2c101d775385ca961903</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Weather_Copy_04062021</sys_name>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_update_name>sys_cb_topic_e0adb0a6db1b2c101d775385ca961903</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-06 15:39:08</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="DELETE" query="document_key=e0adb0a6db1b2c101d775385ca961903"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Weather">541541c2db13e8101d775385ca961921</application>
+        <file_path/>
+        <instance_id>d10e0751dbe99bc04c1ff70fbf961974</instance_id>
+        <instance_name>dev56465</instance_name>
+        <name>sys_cb_topic_e0adb0a6db1b2c101d775385ca961903</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic"><sys_cb_topic action="INSERT_OR_UPDATE"><applicability/><applicability_mode>query</applicability_mode><auto_resolution_enabled>false</auto_resolution_enabled><category/><channels/><connect_queue/><description>Get weather info for any US city</description><flexible_conversation_switching>false</flexible_conversation_switching><graph>{
+  "graph_api_version": "1.0.31",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "06597eb58e82447b9fccc42ebfc7ad63": {
+          "id": "06597eb58e82447b9fccc42ebfc7ad63",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "68f27e4ca4144c6fb089fcc01e32163e": {
+          "id": "68f27e4ca4144c6fb089fcc01e32163e",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "80d9d74353644131a14b704cf6de52a6": {
+          "id": "80d9d74353644131a14b704cf6de52a6",
+          "name": "Get Weather info by City",
+          "script": "(function execute() {\n   \n    try { \n          var r = new sn_ws.RESTMessageV2('x_544290_weather.OpenWeather', 'Default GET');\n          r.setStringParameterNoEscape('city', vaVars.cityName);\n          \n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\n var Weather = JSON.parse(responseBody); \n\nvaVars.icon = \"IconMissing\";\n\n//Clear\nvar IconCheck = Weather.weather[0].icon.includes(\"01d\");\n if(IconCheck)\n {\n  vaVars.icon = \"https://dev56465.service-now.com/Weather_Clear_Day.png\";\n }\n\n var IconCheck = Weather.weather[0].icon.includes(\"01n\");\n if(IconCheck)\n {\n  vaVars.icon = \"https://dev56465.service-now.com/Weather_Clear_Night.png\";\n }\n  \n//Scattered clouds\nvar IconCheck = Weather.weather[0].icon.includes(\"03d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"03n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Night.png\";\n }\n\n//Few clouds\nvar IconCheck = Weather.weather[0].icon.includes(\"02d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Day.png\";\n }\n \n var IconCheck = Weather.weather[0].icon.includes(\"02n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Few_Clouds_Night.png\";\n }\n\n//Rain\nvar IconCheck = Weather.weather[0].icon.includes(\"10d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"10n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Night.png\";\n }\n\n//Shower rain\nvar IconCheck = Weather.weather[0].icon.includes(\"09d\");\nif(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"09n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Rain_Night.png\";\n }\n\n\n //Broken clouds\n var IconCheck = Weather.weather[0].icon.includes(\"04d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Scattered_Clouds_Day.png\";\n }\n\n var IconCheck = Weather.weather[0].icon.includes(\"04n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Few_Clouds_Night.png\";\n }\n\n //Thunderstorm\n var IconCheck = Weather.weather[0].icon.includes(\"11d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Thunderstorm_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"11n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Thunderstorm_Night.png\";\n }\n\n //Snow\n var IconCheck = Weather.weather[0].icon.includes(\"13d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Snow_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"13n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Snow_Night.png\";\n }\n\n//Mist\nvar IconCheck = Weather.weather[0].icon.includes(\"50d\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Mist_Day.png\";\n }\n var IconCheck = Weather.weather[0].icon.includes(\"50n\");\n if(IconCheck)\n {\n     vaVars.icon = \"https://dev56465.service-now.com/Weather_Mist_Night.png\";\n }\n\n if(vaVars.icon == \"IconMissing\")\n {\n  vaVars.icon = \"https://dev56465.service-now.com/Weather_weather.png\";\n }\n\n\n\n\n//vaVars.icon = \"https://dev56465.service-now.com/Weather_Clear_Day.png\";\n\n//this is for the built-in images that are unacceptable\n//vaVars.icon = \"https://openweathermap.org/img/wn/\" + Weather.weather[0].icon + \"@2x.png\";\n\n \n vaVars.description = Weather.weather[0].main;\n vaVars.currentTemp = Math.round(Weather.main.temp);\n vaVars.cityNameHeading = Weather.name;\n\n\n}\n\n\ncatch(ex) {\n var message = ex.message;\n}\n\n\n})()\n\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "42206dd1035b434182cda1f8958e2b34": {
+          "id": "42206dd1035b434182cda1f8958e2b34",
+          "stepType": "HtmlOutput",
+          "name": "Display Weather Info in HTML",
+          "value": "&lt;html&gt;\n&lt;head&gt;\n\n&lt;!--&lt;style&gt;\nimg {\n  border: 5px solid #555;\n}--&gt;\n&lt;/style&gt;\n&lt;/head&gt;\n    &lt;body&gt;   \n  &lt;b&gt;&lt;p style=\"font-size:30px;\"&gt; {{vaVars.City_State}}&lt;/p&gt;&lt;/b&gt;\n &lt;b&gt;&lt;p style=\"color:DodgerBlue;font-size:30px;\"&gt;{{vaVars.currentTemp}}° {{vaVars.description}} &lt;/p&gt;&lt;/b&gt;\n\n &lt;img src={{vaVars.icon}}&gt;\n   \n    &lt;/body&gt;\n&lt;/html&gt;\n",
+          "height": "0",
+          "width": "0",
+          "applicability": {
+            "mode": "query",
+            "value": ""
+          }
+        },
+        "b8fe4c0a6a74493c945d01b268f76f30": {
+          "id": "b8fe4c0a6a74493c945d01b268f76f30",
+          "stepType": "TextOutput",
+          "name": "Hello User",
+          "secure": false,
+          "value": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Hello "
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.user.first_name}}",
+                      "displayValue": "Input Variables➛User➛First name"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Here is your local weather!"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "4a3d8cc538c6447ab9f68c78a9124402": {
+          "id": "4a3d8cc538c6447ab9f68c78a9124402",
+          "name": "Get Profile City",
+          "script": "(function execute() {\n   \n    try { \n\n \n var UserName = gs.getUserName();\n\n var now_GR = new GlideRecord('sys_user');\n\n var ReturnValue = now_GR.get('user_name', UserName);\n\n vaVars.cityName = now_GR.getDisplayValue('location');\n\n vaVars.City_State = now_GR.getDisplayValue('location');\n\n\n \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n\n})()\n\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "ae066848d6e64478b0f732c165a85a09": {
+          "id": "ae066848d6e64478b0f732c165a85a09",
+          "stepType": "Prompt",
+          "name": "city4characters",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Enter at least first 3 characters of city:"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "2c7d71e0a4f1460d82db1f28974ae41b",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          }
+        },
+        "79ccea210b324da583f1bc496ec3d837": {
+          "id": "79ccea210b324da583f1bc496ec3d837",
+          "name": "Get City List",
+          "script": "(function execute() {\n   try { \n  var r = new sn_ws.RESTMessageV2('x_544290_weather.GeoBytesCity', 'Default GET');\n  r.setStringParameterNoEscape('city',vaInputs.city4characters);\n\n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\nvaVars.EmptyString = responseBody;\n\nvaVars.DoesCityExist = \"Yes\"; \n\nif(responseBody == '[\\\"\\\"]')\n  {      \nvaVars.DoesCityExist = \"No\"; \nvaVars.error = \"\\\"\" + vaInputs.city4characters + \"\\\" not found\";\n  }\n\n  if(responseBody == '[\\\"%s\\\"]')\n  {\n    vaVars.DoesCityExist = \"No\"; \n\n    vaVars.error = \"\\\"\" + vaInputs.city4characters + \"\\\" less than 3 characters\";\n  }\n\n   \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n  \n}\n\n)()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "5a16b13770294fe99c2d23710b496ad1": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "choice of city",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Select City"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "mode": "query",
+            "value": ""
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "7680910628b3470895c7d0701dc864a8",
+          "id": "5a16b13770294fe99c2d23710b496ad1",
+          "mode": "external",
+          "script": "(function execute() {\n   try { \n  var r = new sn_ws.RESTMessageV2('x_544290_weather.GeoBytesCity', 'Default GET');\n r.setStringParameterNoEscape('city',vaInputs.city4characters);\n\n\n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\n var str = responseBody;\nvar res = str.replace(\"[\\\"\", \"\");\n\nvar res2 = res.replace(\"\\\"]\", \"\");\n\nvar nameArr = res2.split('\",\"');\n\n\n\nvar options = []; // add options here...\n\n\nfor (i = 0; i &lt; nameArr.length; ++i) {\n\n //var CityItem = nameArr[i].replace(\"\\\"\",\"\");\n\n  var CityItem = nameArr[i];\n\n//var CityItem2 = CityItem.replace(\", United States\",\"\");\n\nvar CityItem3 = CityItem.replace(\"\\, \",\"\\,\");\n\nvaVars.CityLIstResults = CityItem3;\n\noptions.push({ 'value': CityItem3, 'label': gs.getMessage(CityItem3), 'render_style': 'data' });\n \n}\n \n options.push({ 'value': \"exit\", 'label': \"Exit\", 'render_style': 'data' });\n   \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n   return options;\n\n}\n\n)()\n",
+          "metadataScript": "",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Cities not found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "condition": {
+            "value": "(function execute() {\n   try { \n  var r = new sn_ws.RESTMessageV2('x_544290_weather.GeoBytesCity', 'Default GET');\n r.setStringParameterNoEscape('city',vaInputs.city4characters);\n\n\n var response = r.execute();\n var responseBody = response.getBody();\n var httpStatus = response.getStatusCode();\n\n var str = responseBody;\nvar res = str.replace(\"[\\\"\", \"\");\n\nvar res2 = res.replace(\"\\\"]\", \"\");\n\nvar nameArr = res2.split('\",\"');\n\n\n\nvar options = []; // add options here...\n\n\nfor (i = 0; i &lt; nameArr.length; ++i) {\n\n //var CityItem = nameArr[i].replace(\"\\\"\",\"\");\n\n  var CityItem = nameArr[i];\n\n//var CityItem2 = CityItem.replace(\", United States\",\"\");\n\nvar CityItem3 = CityItem.replace(\"\\, \",\"\\,\");\n\nvaVars.CityLIstResults = CityItem3;\n\noptions.push({ 'value': CityItem3, 'label': gs.getMessage(CityItem3), 'render_style': 'data' });\n \n}\n \n options.push({ 'value': \"exit\", 'label': \"Exit\", 'render_style': 'data' });\n   \n}\n\ncatch(ex) {\n var message = ex.message;\n}\n\n   return options;\n\n}\n\n)()\n",
+            "mode": "external_script"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "df4e71395d9b45bfaa6df9c2def77cc4": {
+          "id": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "93f54a6613f04e35a2b552c0c7a03f3b": {
+          "id": "93f54a6613f04e35a2b552c0c7a03f3b",
+          "stepType": "TextOutput",
+          "name": "Not found",
+          "secure": false,
+          "value": {
+            "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n\n    \n\n    return gs.getMessage('Error: {0}', [vaVars.error]);\n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "9ae895938d664ce6ba3064303d3f2f69": {
+          "id": "9ae895938d664ce6ba3064303d3f2f69",
+          "stepType": "TextOutput",
+          "name": "Goodbye Text",
+          "secure": false,
+          "value": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please return soon ",
+                    "bold": true,
+                    "italic": true
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.user.first_name}}",
+                      "displayValue": "Input Variables➛User➛First name"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ],
+                    "bold": true,
+                    "italic": true
+                  },
+                  {
+                    "text": "",
+                    "bold": true,
+                    "italic": true
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "67869c0771cd49ddacb84bed5297d3b2": {
+          "id": "67869c0771cd49ddacb84bed5297d3b2",
+          "name": "Add to CityName variable",
+          "script": "(function execute() {\n\n    var Result = vaInputs.choose_loc_from_history;\n\n    var Result = Result.toString();\n\n    vaVars.City_State = Result.replace(',US',\"\");\n\n    vaVars.cityName = vaInputs.choose_loc_from_history;\n\n    var tableRec = new GlideRecord('x_544290_weather_weather_virtualagent');\n\n        var userName = gs.getUserName()  \n        \n        tableRec.addQuery('location_choice',vaVars.cityName);\n        tableRec.addQuery('sys_updated_by',userName);\n        tableRec.query();\n\n        if(tableRec.next()) \n        {          \n            tableRec.deleteRecord();     \n        }\n          \n            tableRec.initialize();\n\n            tableRec.location_choice = vaVars.cityName;\n\n            tableRec.insert();     \n            \n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "cbf9d29780814bd5941a3d19adc5fe2d": {
+          "id": "cbf9d29780814bd5941a3d19adc5fe2d",
+          "name": "Add Loc to Table if Unique",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic: */\n\n        var tableRec = new GlideRecord('x_544290_weather_weather_virtualagent');\n\n        var userName = gs.getUserName()  \n        \n        tableRec.addQuery('location_choice',vaVars.cityName);\n        tableRec.addQuery('sys_updated_by',userName);\n        tableRec.query();\n\n         \n        if(tableRec.next()) \n        {          \n            tableRec.deleteRecord();          \n\n           //  tableRec.update();\n        }\n\n          tableRec.initialize();\n\n            tableRec.location_choice = vaVars.cityName;\n\n            tableRec.insert();           \n   \n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "0cda745cde9b4dc89d94f53c8e8bac48": {
+          "id": "0cda745cde9b4dc89d94f53c8e8bac48",
+          "name": "Add to City Variable",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n\n    vaVars.City_State = vaInputs.choice_of_city;\n\nvaVars.cityName = vaInputs.choice_of_city + \",US\";\n\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "15daee4cf7b040ae9920c72ff841f447": {
+          "id": "15daee4cf7b040ae9920c72ff841f447",
+          "stepType": "Decision",
+          "name": "Was Exit Selected?"
+        },
+        "c3ea2f14ceb74341b4918ae08661027f": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "Choose Loc from History",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Select One:"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "d2ee96c3bc2344ff89351585cccf97ac",
+          "id": "c3ea2f14ceb74341b4918ae08661027f",
+          "mode": "glide_record",
+          "script": "",
+          "metadataScript": "",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Location History Not Found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "condition": {
+            "mode": "glide_scripted_query",
+            "value": "(function execute(table) {\n    /* Code your glide record query logic here. For example: */\n\n      var options = [];\n      var gr = new GlideRecordSecure('x_544290_weather_weather_virtualagent');        \n\n      var userName = gs.getUserName() \n\n      vaVars.error = userName;\n\n       // gr.addEncodedQuery('All');\n       gr.addQuery('sys_updated_by',userName);\n       gr.orderByDesc('sys_updated_on');\n       gr.setLimit(4);\n       gr.query();\n        while(gr.next()) {\n            options.push({ 'value': gr.getValue('location_choice'), 'label': gr.getValue('location_choice') });\n       \n      // options.push({ 'value': ProjectKey, 'label': gs.getMessage(ProjectName), 'render_style': 'data' });\n        \n       \n        }\n        options.push({ 'value': \"chooseAnotherCity\", 'label': \"Choose Another City\" });\n         options.push({ 'value': \"exit\", 'label': \"Exit\" });\n         \n       \n        return options; \n\n   \n})(table)\n"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "6449d3019a5945ada70992b4f552ff09": {
+          "id": "6449d3019a5945ada70992b4f552ff09",
+          "stepType": "Decision",
+          "name": "Decision"
+        }
+      },
+      "edges": [
+        {
+          "id": "805dbea3c52147ab94f9c864f394d7f3",
+          "edgeType": "Edge",
+          "source": "93f54a6613f04e35a2b552c0c7a03f3b",
+          "target": "c3ea2f14ceb74341b4918ae08661027f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "57adaaac4bd849208bdec7afe1478e9c",
+          "edgeType": "Edge",
+          "source": "ae066848d6e64478b0f732c165a85a09",
+          "target": "79ccea210b324da583f1bc496ec3d837",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "8ed07f3c522644379747b7abed44c6d5",
+          "edgeType": "Edge",
+          "source": "06597eb58e82447b9fccc42ebfc7ad63",
+          "target": "b8fe4c0a6a74493c945d01b268f76f30",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "2ce60ed8c4aa466da5cd738dce1616e4",
+          "edgeType": "Edge",
+          "source": "cbf9d29780814bd5941a3d19adc5fe2d",
+          "target": "80d9d74353644131a14b704cf6de52a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e431576df1724e2bbeb65d77e1969d4f",
+          "edgeType": "Edge",
+          "source": "67869c0771cd49ddacb84bed5297d3b2",
+          "target": "80d9d74353644131a14b704cf6de52a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e0ef452cb91e41eba3dd2d6d7eca0a35",
+          "edgeType": "Edge",
+          "source": "9ae895938d664ce6ba3064303d3f2f69",
+          "target": "68f27e4ca4144c6fb089fcc01e32163e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "10a2614a84374241acb06b1284155bc3",
+          "edgeType": "Edge",
+          "source": "b8fe4c0a6a74493c945d01b268f76f30",
+          "target": "4a3d8cc538c6447ab9f68c78a9124402",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "37403ad36830470d8064cef6e751c176",
+          "edgeType": "Edge",
+          "source": "80d9d74353644131a14b704cf6de52a6",
+          "target": "42206dd1035b434182cda1f8958e2b34",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ea25527d49bb4a61baaaa0351844fa96",
+          "edgeType": "Edge",
+          "source": "4a3d8cc538c6447ab9f68c78a9124402",
+          "target": "80d9d74353644131a14b704cf6de52a6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "6ac16bb52b44487c9c12f83df5d4dd10",
+          "edgeType": "Edge",
+          "source": "79ccea210b324da583f1bc496ec3d837",
+          "target": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f4f0f4fe1373405b9b532cb3311ce056",
+          "edgeType": "Branch",
+          "source": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "target": "5a16b13770294fe99c2d23710b496ad1",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n \n    if(vaVars.DoesCityExist == \"Yes\")\n    {return true;}\n   \n})()\n"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "8bf0d0e3c9eb4b408b55566f97fbe9e3",
+          "edgeType": "Branch",
+          "source": "df4e71395d9b45bfaa6df9c2def77cc4",
+          "target": "93f54a6613f04e35a2b552c0c7a03f3b",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n    if(vaVars.DoesCityExist == \"No\")\n    {return true;}\n   \n})()\n"
+          },
+          "label": "No"
+        },
+        {
+          "id": "89695c96fdb14a0eb73b408a0d68dca4",
+          "edgeType": "Edge",
+          "source": "0cda745cde9b4dc89d94f53c8e8bac48",
+          "target": "cbf9d29780814bd5941a3d19adc5fe2d",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c5ba80b146c54f47b5ac0b15c628771d",
+          "edgeType": "Edge",
+          "source": "5a16b13770294fe99c2d23710b496ad1",
+          "target": "15daee4cf7b040ae9920c72ff841f447",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e2bafdcc9cbd4642bee61da8695ede9d",
+          "edgeType": "Branch",
+          "source": "15daee4cf7b040ae9920c72ff841f447",
+          "target": "0cda745cde9b4dc89d94f53c8e8bac48",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choice_of_city != \"exit\")\n    {\n    return true;\n    }\n})()\n"
+          },
+          "label": "No"
+        },
+        {
+          "id": "3cc81a2546154eada462e20c2b712feb",
+          "edgeType": "Branch",
+          "source": "15daee4cf7b040ae9920c72ff841f447",
+          "target": "9ae895938d664ce6ba3064303d3f2f69",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choice_of_city == \"exit\")\n    {\n    return true;\n    }\n})()\n"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "1f80b998da80487a8486922d954c04e0",
+          "edgeType": "Edge",
+          "source": "42206dd1035b434182cda1f8958e2b34",
+          "target": "c3ea2f14ceb74341b4918ae08661027f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "0ca0f57a18854909beec5758c04878de",
+          "edgeType": "Edge",
+          "source": "c3ea2f14ceb74341b4918ae08661027f",
+          "target": "6449d3019a5945ada70992b4f552ff09",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "5d7a8e91719a4beaba4898e1e3bf8cec",
+          "edgeType": "Branch",
+          "source": "6449d3019a5945ada70992b4f552ff09",
+          "target": "ae066848d6e64478b0f732c165a85a09",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choose_loc_from_history == 'chooseAnotherCity')\n    {return true;}\n    \n})()\n"
+          },
+          "label": "chooseAnotherCity"
+        },
+        {
+          "id": "ae895f566dc94585aa4ee6c7f2a2309d",
+          "edgeType": "Branch",
+          "source": "6449d3019a5945ada70992b4f552ff09",
+          "target": "9ae895938d664ce6ba3064303d3f2f69",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaInputs.choose_loc_from_history == 'exit')\n    {return true;}\n    \n})()\n"
+          },
+          "label": "Exit"
+        },
+        {
+          "id": "4979c284de9542b7bed44ac42cbfd7b1",
+          "edgeType": "Branch",
+          "source": "6449d3019a5945ada70992b4f552ff09",
+          "target": "67869c0771cd49ddacb84bed5297d3b2",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "query",
+            "value": ""
+          },
+          "label": "Always"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "86c7da29593f42f1b2fba25b5bb37cc5": {
+      "category": "vaInputs",
+      "id": "86c7da29593f42f1b2fba25b5bb37cc5",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "f22e0502d01848608372abaf8d92dade": {
+      "id": "f22e0502d01848608372abaf8d92dade",
+      "value": {
+        "mode": "simple",
+        "value": "icon not found"
+      },
+      "name": "icon",
+      "label": "icon",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "889c4cdf64ad484db54a8446e4603460": {
+      "id": "889c4cdf64ad484db54a8446e4603460",
+      "value": {
+        "mode": "simple",
+        "value": "description not found"
+      },
+      "name": "description",
+      "label": "description",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "8a78039e0eae4d08b18357fa81ef0c08": {
+      "id": "8a78039e0eae4d08b18357fa81ef0c08",
+      "value": {
+        "mode": "simple",
+        "value": "Current temp not found"
+      },
+      "name": "currentTemp",
+      "label": "currentTemp",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "d571f48253474051bfb436fbfd179487": {
+      "id": "d571f48253474051bfb436fbfd179487",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "cityName",
+      "label": "cityName",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "1964ddd3c0bd4b8b80d33f35e2695a19": {
+      "id": "1964ddd3c0bd4b8b80d33f35e2695a19",
+      "value": {
+        "mode": "simple",
+        "value": "sys_id not found"
+      },
+      "name": "sys_id",
+      "label": "sys_id",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "ff419cd58aef48a4a6505757020ad40d": {
+      "id": "ff419cd58aef48a4a6505757020ad40d",
+      "value": {
+        "mode": "simple",
+        "value": "error"
+      },
+      "name": "error",
+      "label": "error",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "233b99e980184780bfea16aa19d474f0": {
+      "id": "233b99e980184780bfea16aa19d474f0",
+      "value": {
+        "mode": "simple",
+        "value": "cityNameHeading not found"
+      },
+      "name": "cityNameHeading",
+      "label": "cityNameHeading",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "2c7d71e0a4f1460d82db1f28974ae41b": {
+      "id": "2c7d71e0a4f1460d82db1f28974ae41b",
+      "name": "city4characters",
+      "label": "City4characters",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTYxNTE1OTk4MTU5OSBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      }
+    },
+    "d09cb6802c93429bac1a98a3ef4f4892": {
+      "id": "d09cb6802c93429bac1a98a3ef4f4892",
+      "value": {
+        "mode": "simple",
+        "value": "City_State not found"
+      },
+      "name": "City_State",
+      "label": "City_State",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "98dda8a35c0145ad81412de67b401959": {
+      "id": "98dda8a35c0145ad81412de67b401959",
+      "value": {
+        "mode": "simple",
+        "value": "CityLIstResults not found"
+      },
+      "name": "CityLIstResults",
+      "label": "CityLIstResults",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "f38992877ea542e082a7e9148f89428d": {
+      "id": "f38992877ea542e082a7e9148f89428d",
+      "value": {
+        "mode": "simple",
+        "value": "ListofCities not found"
+      },
+      "name": "ListofCities",
+      "label": "ListofCities",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "7680910628b3470895c7d0701dc864a8": {
+      "id": "7680910628b3470895c7d0701dc864a8",
+      "name": "choice_of_city",
+      "label": "Choice Of City",
+      "varType": "reference",
+      "table": "",
+      "category": "vaInputs"
+    },
+    "76d5f4bea4ff47df9144d1d3476bd012": {
+      "id": "76d5f4bea4ff47df9144d1d3476bd012",
+      "value": {
+        "mode": "simple",
+        "value": "DoesCityExist not found"
+      },
+      "name": "DoesCityExist",
+      "label": "DoesCityExist",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "d2ee96c3bc2344ff89351585cccf97ac": {
+      "id": "d2ee96c3bc2344ff89351585cccf97ac",
+      "name": "choose_loc_from_history",
+      "label": "Choose Loc From History",
+      "varType": "reference",
+      "table": "x_544290_weather_weather_virtualagent",
+      "category": "vaInputs"
+    },
+    "a423d1a38d6c41d8a5efafb7372c01ab": {
+      "id": "a423d1a38d6c41d8a5efafb7372c01ab",
+      "value": {
+        "mode": "simple",
+        "value": "EmptyString not found"
+      },
+      "name": "EmptyString",
+      "label": "EmptyString",
+      "varType": "script",
+      "category": "vaVars"
+    }
+  }
+}</graph><key_phrases>Weather_Copy_04062021</key_phrases><library>false</library><live_agent>false</live_agent><name>Weather_Copy_04062021</name><nlu_intent/><nlu_intent_label/><nlu_model/><nlu_model_label/><nlu_provider/><roles/><source_topic_id>ddd30cdedbd7e8101d775385ca9619a7</source_topic_id><sys_class_name>sys_cb_topic</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-04-06 15:38:54</sys_created_on><sys_domain>global</sys_domain><sys_id>e0adb0a6db1b2c101d775385ca961903</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Weather_Copy_04062021</sys_name><sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package><sys_policy/><sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope><sys_update_name>sys_cb_topic_e0adb0a6db1b2c101d775385ca961903</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-04-06 15:39:08</sys_updated_on><triggerable_by_notification>false</triggerable_by_notification><type>STANDARD</type><variables/></sys_cb_topic><sys_variable_value action="delete_multiple" query="document_key=e0adb0a6db1b2c101d775385ca961903"/></record_update>]]></payload>
+        <payload_hash>296528465</payload_hash>
+        <record_name>Weather_Copy_04062021</record_name>
+        <reverted_from/>
+        <source>d81541c2db13e8101d775385ca961923</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-06 15:39:09</sys_created_on>
+        <sys_id>48bd70a6db1b2c101d775385ca9619b9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>178a7d666870000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-06 15:39:09</sys_updated_on>
+        <type>Topic</type>
+        <update_guid>00bd70a6b01b2c1000bf91896c7efbb9</update_guid>
+        <update_guid_history>00bd70a6b01b2c1000bf91896c7efbb9:296528465,f4adb4a6331b2c107207b9f6b7b0c12b:473526811</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-07 15:37:55</sys_created_on>
+        <sys_db_object display_value="" name="sys_cb_topic">sys_cb_topic</sys_db_object>
+        <sys_id>23ab6df1ca1d44f4af1cd177100cd910</sys_id>
+        <sys_metadata>e0adb0a6db1b2c101d775385ca961903</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Weather_Copy_04062021</sys_name>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_scope_delete display_value="">29ad0ae5084c44ef93fa1b9454296b51</sys_scope_delete>
+        <sys_update_name>sys_cb_topic_e0adb0a6db1b2c101d775385ca961903</sys_update_name>
+        <sys_update_version display_value="sys_cb_topic_e0adb0a6db1b2c101d775385ca961903">48bd70a6db1b2c101d775385ca9619b9</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-07 15:37:55</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

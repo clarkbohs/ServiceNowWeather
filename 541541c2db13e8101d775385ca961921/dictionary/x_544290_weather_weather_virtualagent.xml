@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Weather_VirtualAgent" max_length="40" name="x_544290_weather_weather_virtualagent" sizeclass="19" type="collection">
+        <element label="Location_Choice" max_length="100" name="location_choice" type="string"/>
+    </element>
+</database>

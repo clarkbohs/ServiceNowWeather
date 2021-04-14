@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_topic_language">
+    <sys_cs_topic_language action="DELETE">
+        <cs_topic_id display_value="Weather_VirtualAgentFlow">777d8c9adb5be8101d775385ca9619bb</cs_topic_id>
+        <language_code>en</language_code>
+        <nlu_entities>[{"variable_name":"autocomplete","nlu_entity":"","nlu_entity_label":""},{"variable_name":"city4characters","nlu_entity":"","nlu_entity_label":""},{"variable_name":"select_city","nlu_entity":"","nlu_entity_label":""},{"variable_name":"display_cities","nlu_entity":"","nlu_entity_label":""},{"variable_name":"get_cities","nlu_entity":"","nlu_entity_label":""},{"variable_name":"display_cities_to_select","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choice_of_city","nlu_entity":"","nlu_entity_label":""},{"variable_name":"make_choice","nlu_entity":"","nlu_entity_label":""},{"variable_name":"select_it","nlu_entity":"","nlu_entity_label":""},{"variable_name":"city_not_found","nlu_entity":"","nlu_entity_label":""},{"variable_name":"cityexists","nlu_entity":"","nlu_entity_label":""},{"variable_name":"cityexists2","nlu_entity":"","nlu_entity_label":""},{"variable_name":"continue_","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choose_from_history","nlu_entity":"","nlu_entity_label":""},{"variable_name":"rerunweather","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""}]</nlu_entities>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model>Setup_Topics_Model</nlu_model>
+        <nlu_model_label>[Read Only] Setup Topics Model</nlu_model_label>
+        <nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider>
+        <sys_class_name>sys_cs_topic_language</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-05 17:30:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>ff7d8c9adb5be8101d775385ca9619c0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_update_name>sys_cs_topic_language_ff7d8c9adb5be8101d775385ca9619c0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-05 17:30:07</sys_updated_on>
+    </sys_cs_topic_language>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Weather">541541c2db13e8101d775385ca961921</application>
+        <file_path/>
+        <instance_id>d10e0751dbe99bc04c1ff70fbf961974</instance_id>
+        <instance_name>dev56465</instance_name>
+        <name>sys_cs_topic_language_ff7d8c9adb5be8101d775385ca9619c0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_topic_language"><sys_cs_topic_language action="INSERT_OR_UPDATE"><cs_topic_id display_value="Weather_VirtualAgentFlow">777d8c9adb5be8101d775385ca9619bb</cs_topic_id><language_code>en</language_code><nlu_entities>[{"variable_name":"autocomplete","nlu_entity":"","nlu_entity_label":""},{"variable_name":"city4characters","nlu_entity":"","nlu_entity_label":""},{"variable_name":"select_city","nlu_entity":"","nlu_entity_label":""},{"variable_name":"display_cities","nlu_entity":"","nlu_entity_label":""},{"variable_name":"get_cities","nlu_entity":"","nlu_entity_label":""},{"variable_name":"display_cities_to_select","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choice_of_city","nlu_entity":"","nlu_entity_label":""},{"variable_name":"make_choice","nlu_entity":"","nlu_entity_label":""},{"variable_name":"select_it","nlu_entity":"","nlu_entity_label":""},{"variable_name":"city_not_found","nlu_entity":"","nlu_entity_label":""},{"variable_name":"cityexists","nlu_entity":"","nlu_entity_label":""},{"variable_name":"cityexists2","nlu_entity":"","nlu_entity_label":""},{"variable_name":"continue_","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choose_from_history","nlu_entity":"","nlu_entity_label":""},{"variable_name":"rerunweather","nlu_entity":"","nlu_entity_label":""},{"variable_name":"choose_loc_from_history","nlu_entity":"","nlu_entity_label":""}]</nlu_entities><nlu_intent/><nlu_intent_label/><nlu_model>Setup_Topics_Model</nlu_model><nlu_model_label>[Read Only] Setup Topics Model</nlu_model_label><nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider><sys_class_name>sys_cs_topic_language</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-04-05 17:30:07</sys_created_on><sys_domain>global</sys_domain><sys_id>ff7d8c9adb5be8101d775385ca9619c0</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package><sys_policy/><sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope><sys_update_name>sys_cs_topic_language_ff7d8c9adb5be8101d775385ca9619c0</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-04-05 17:30:07</sys_updated_on></sys_cs_topic_language></record_update>]]></payload>
+        <payload_hash>-1721876374</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>d81541c2db13e8101d775385ca961923</source>
+        <source_table>sys_update_set</source_table>
+        <state>current</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-04-05 17:30:07</sys_created_on>
+        <sys_id>7b7d8c9adb5be8101d775385ca9619c2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>178a315a27f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-04-05 17:30:07</sys_updated_on>
+        <type>CS Topic Language</type>
+        <update_guid>737d8c9ae25be810dbbe35cbecc6b7c2</update_guid>
+        <update_guid_history>737d8c9ae25be810dbbe35cbecc6b7c2:-1721876374</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2021-04-06 06:20:27</sys_created_on>
+        <sys_db_object display_value="" name="sys_cs_topic_language">sys_cs_topic_language</sys_db_object>
+        <sys_id>08fb5c6848cb48ac8019d4d382e03790</sys_id>
+        <sys_metadata>ff7d8c9adb5be8101d775385ca9619c0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+        <sys_scope_delete display_value="">29ad0ae5084c44ef93fa1b9454296b51</sys_scope_delete>
+        <sys_update_name>sys_cs_topic_language_ff7d8c9adb5be8101d775385ca9619c0</sys_update_name>
+        <sys_update_version display_value="sys_cs_topic_language_ff7d8c9adb5be8101d775385ca9619c0">7b7d8c9adb5be8101d775385ca9619c2</sys_update_version>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2021-04-06 06:20:27</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

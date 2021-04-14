@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_544290_weather_weather_virtualagent" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>location_choice</element>
+            <list_id display_value="x_544290_weather_weather_virtualagent" element="NULL" name="x_544290_weather_weather_virtualagent" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">abd5d0d2db9be8101d775385ca9619b6</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2021-04-05 18:06:41</sys_created_on>
+            <sys_id>6bd5d0d2db9be8101d775385ca9619b7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2021-04-05 18:06:41</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_544290_weather_weather_virtualagent</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2021-04-05 18:06:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>abd5d0d2db9be8101d775385ca9619b6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_544290_weather_weather_virtualagent</sys_name>
+            <sys_package display_value="Weather" source="x_544290_weather">541541c2db13e8101d775385ca961921</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Weather">541541c2db13e8101d775385ca961921</sys_scope>
+            <sys_update_name>sys_ui_list_x_544290_weather_weather_virtualagent_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2021-04-05 18:06:41</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
